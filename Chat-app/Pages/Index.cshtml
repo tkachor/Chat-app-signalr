@@ -3,8 +3,42 @@
 @{
     ViewData["Title"] = "Home page";
 }
+​
+@Html.Hidden("sender", Model.MyUser) 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+<div class="row clearfix">
+    <div class="col-lg-12">       
+        <div class="card chat-app">
+           
+            <div id="plist" class="people-list">  
+               <p>Receiver:</p>
+               @Html.DropDownList("receiver",Model.Users, "All", new { @class="form-control"})
+            </div>
+            <div class="chat">               
+                <div class="chat-history">
+                    <ul class="m-b-0" >
+                        <li class="clearfix">
+                           <div class="message other-message" id="messagesList"></div>                           
+                        </li>                      
+                    </ul>
+                </div>
+                <div class="chat-message clearfix">
+                    <div class="input-group mb-0">
+                        <input type="button" id="sendMessage" class="btn btn-success" value="Send Message" />                       
+                        <input type="text" id="message" class="form-control" placeholder="Enter text here...">                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
+​
+@section Scripts
+{
+    <script src="~/js/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}
